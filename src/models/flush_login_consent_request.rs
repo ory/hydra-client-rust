@@ -12,15 +12,15 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct FlushInactiveOAuth2TokensRequest {
-    /// NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recently issued tokens for auditing.
+pub struct FlushLoginConsentRequest {
+    /// NotAfter sets after which point tokens should not be flushed. This is useful when you want to keep a history of recent login and consent database entries for auditing.
     #[serde(rename = "notAfter", skip_serializing_if = "Option::is_none")]
     pub not_after: Option<String>,
 }
 
-impl FlushInactiveOAuth2TokensRequest {
-    pub fn new() -> FlushInactiveOAuth2TokensRequest {
-        FlushInactiveOAuth2TokensRequest {
+impl FlushLoginConsentRequest {
+    pub fn new() -> FlushLoginConsentRequest {
+        FlushLoginConsentRequest {
             not_after: None,
         }
     }

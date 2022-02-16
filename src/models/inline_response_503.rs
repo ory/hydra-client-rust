@@ -12,16 +12,16 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct HealthNotReadyStatus {
+pub struct InlineResponse503 {
     /// Errors contains a list of errors that caused the not ready status.
-    #[serde(rename = "errors", skip_serializing_if = "Option::is_none")]
-    pub errors: Option<::std::collections::HashMap<String, String>>,
+    #[serde(rename = "errors")]
+    pub errors: ::std::collections::HashMap<String, String>,
 }
 
-impl HealthNotReadyStatus {
-    pub fn new() -> HealthNotReadyStatus {
-        HealthNotReadyStatus {
-            errors: None,
+impl InlineResponse503 {
+    pub fn new(errors: ::std::collections::HashMap<String, String>) -> InlineResponse503 {
+        InlineResponse503 {
+            errors,
         }
     }
 }
