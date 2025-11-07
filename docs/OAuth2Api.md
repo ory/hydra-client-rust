@@ -475,7 +475,7 @@ This endpoint lists all clients in the database, and never returns client secret
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **page_size** | Option<**i64**> | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
-**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |
 **client_name** | Option<**String**> | The name of the clients to filter by. |  |
 **owner** | Option<**String**> | The owner of the clients to filter by. |  |
 
@@ -530,7 +530,7 @@ No authorization required
 
 ## list_trusted_o_auth2_jwt_grant_issuers
 
-> Vec<models::TrustedOAuth2JwtGrantIssuer> list_trusted_o_auth2_jwt_grant_issuers(max_items, default_items, issuer)
+> Vec<models::TrustedOAuth2JwtGrantIssuer> list_trusted_o_auth2_jwt_grant_issuers(page_size, page_token, issuer)
 List Trusted OAuth2 JWT Bearer Grant Type Issuers
 
 Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
@@ -540,8 +540,8 @@ Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**max_items** | Option<**i64**> |  |  |
-**default_items** | Option<**i64**> |  |  |
+**page_size** | Option<**i64**> | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |
 **issuer** | Option<**String**> | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. |  |
 
 ### Return type
@@ -592,7 +592,7 @@ No authorization required
 > models::DeviceAuthorization o_auth2_device_flow()
 The OAuth 2.0 Device Authorize Endpoint
 
-This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exist.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
 
 ### Parameters
 
@@ -684,7 +684,7 @@ No authorization required
 > models::ErrorOAuth2 perform_o_auth2_device_verification_flow()
 OAuth 2.0 Device Verification Endpoint
 
-This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+This is the device user verification endpoint. The user is redirected here when trying to log in using the device flow.
 
 ### Parameters
 
@@ -800,7 +800,7 @@ No authorization required
 
 ## revoke_o_auth2_consent_sessions
 
-> revoke_o_auth2_consent_sessions(subject, client, all)
+> revoke_o_auth2_consent_sessions(subject, client, consent_request_id, all)
 Revoke OAuth 2.0 Consent Sessions of a Subject
 
 This endpoint revokes a subject's granted consent sessions and invalidates all associated OAuth 2.0 Access Tokens. You may also only revoke sessions for a specific OAuth 2.0 Client ID.
@@ -810,8 +810,9 @@ This endpoint revokes a subject's granted consent sessions and invalidates all a
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**subject** | **String** | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | [required] |
+**subject** | Option<**String**> | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. |  |
 **client** | Option<**String**> | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. |  |
+**consent_request_id** | Option<**String**> | Consent Request ID  If set, revoke all token chains derived from this particular consent request ID. |  |
 **all** | Option<**bool**> | Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted. |  |
 
 ### Return type

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**challenge** | Option<**String**> | Challenge is the identifier (\"logout challenge\") of the logout authentication request. It is used to identify the session. | [optional]
+**challenge** | Option<**String**> | Challenge is the identifier of the logout authentication request. | [optional]
 **client** | Option<[**models::OAuth2Client**](oAuth2Client.md)> |  | [optional]
 **expires_at** | Option<**String**> |  | [optional]
 **request_url** | Option<**String**> | RequestURL is the original Logout URL requested. | [optional]

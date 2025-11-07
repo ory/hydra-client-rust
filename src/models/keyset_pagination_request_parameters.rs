@@ -11,9 +11,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// TokenPaginationRequestParameters : The `Link` HTTP header contains multiple links (`first`, `next`, `last`, `previous`) formatted as: `<https://{project-slug}.projects.oryapis.com/admin/clients?page_size={limit}&page_token={offset}>; rel=\"{page}\"`  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+/// KeysetPaginationRequestParameters : For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct TokenPaginationRequestParameters {
+pub struct KeysetPaginationRequestParameters {
     /// Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     #[serde(rename = "page_size", skip_serializing_if = "Option::is_none")]
     pub page_size: Option<i64>,
@@ -22,10 +22,10 @@ pub struct TokenPaginationRequestParameters {
     pub page_token: Option<String>,
 }
 
-impl TokenPaginationRequestParameters {
-    /// The `Link` HTTP header contains multiple links (`first`, `next`, `last`, `previous`) formatted as: `<https://{project-slug}.projects.oryapis.com/admin/clients?page_size={limit}&page_token={offset}>; rel=\"{page}\"`  For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-    pub fn new() -> TokenPaginationRequestParameters {
-        TokenPaginationRequestParameters {
+impl KeysetPaginationRequestParameters {
+    /// For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    pub fn new() -> KeysetPaginationRequestParameters {
+        KeysetPaginationRequestParameters {
             page_size: None,
             page_token: None,
         }
